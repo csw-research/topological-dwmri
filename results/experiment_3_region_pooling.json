@@ -1,0 +1,87 @@
+{
+  "name": "experiment_3_region_pooling",
+  "diagnostics": [
+    {
+      "kind": "free",
+      "params": {
+        "D": 0.0008
+      },
+      "alpha_cumulative": 1.7992411866676798,
+      "alpha_directional": 2.6710690549664684,
+      "mean_K": 0.08106861965548542,
+      "std_K": 0.06335514566300808,
+      "mean_alpha_se": 1.9610587700076594,
+      "std_alpha_se": 0.027736882335960063,
+      "n_lifetimes_cum": 3970,
+      "n_lifetimes_dir": 5220
+    },
+    {
+      "kind": "restricted",
+      "params": {
+        "D_perp": 0.0002,
+        "D_par": 0.0017,
+        "fibre_dir": [
+          0,
+          0,
+          1
+        ]
+      },
+      "alpha_cumulative": 9.379919837410784,
+      "alpha_directional": 1.938584604188321,
+      "mean_K": 0.8554570405912733,
+      "std_K": 0.04145958695976983,
+      "mean_alpha_se": 1.5752978782548723,
+      "std_alpha_se": 0.03428494362771542,
+      "n_lifetimes_cum": 422,
+      "n_lifetimes_dir": 4899
+    },
+    {
+      "kind": "stable",
+      "params": {
+        "alpha": 1.8,
+        "D_alpha": 0.0008
+      },
+      "alpha_cumulative": 2.017805630915563,
+      "alpha_directional": 4.00707825747244,
+      "mean_K": 0.420801818166343,
+      "std_K": 0.036308626790142476,
+      "mean_alpha_se": 1.1179781016111732,
+      "std_alpha_se": 0.12388383796036413,
+      "n_lifetimes_cum": 3944,
+      "n_lifetimes_dir": 5301
+    },
+    {
+      "kind": "stable",
+      "params": {
+        "alpha": 1.5,
+        "D_alpha": 0.0008
+      },
+      "alpha_cumulative": 1.82737992427199,
+      "alpha_directional": 3.1042854642764963,
+      "mean_K": 0.5422123441063949,
+      "std_K": 0.05742113580926871,
+      "mean_alpha_se": 1.3521876262930022,
+      "std_alpha_se": 0.07644237337715895,
+      "n_lifetimes_cum": 3952,
+      "n_lifetimes_dir": 5245
+    },
+    {
+      "kind": "stable",
+      "params": {
+        "alpha": 1.2,
+        "D_alpha": 0.0008
+      },
+      "alpha_cumulative": 1.9174280778080988,
+      "alpha_directional": 3.3652858301088227,
+      "mean_K": 0.8119889521690974,
+      "std_K": 0.06603534269289726,
+      "mean_alpha_se": 1.1850771665808548,
+      "std_alpha_se": 0.06319314535653474,
+      "n_lifetimes_cum": 4009,
+      "n_lifetimes_dir": 5269
+    }
+  ],
+  "n_voxels": 60,
+  "n_dirs": 90,
+  "snr": 30.0
+}

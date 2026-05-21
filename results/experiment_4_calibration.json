@@ -1,0 +1,89 @@
+{
+  "name": "experiment_4_calibration",
+  "rows": [
+    {
+      "alpha_true": 1.0,
+      "alpha_persistence": 2.0803646144495067,
+      "alpha_persistence_lo": 1.829884880966973,
+      "alpha_persistence_hi": 2.3308443479320404,
+      "K_mean": 0.998498977436927,
+      "K_std": 0.056356133209640585,
+      "alpha_se_mean": 0.9943579238884659,
+      "alpha_se_std": 0.05946265297913895
+    },
+    {
+      "alpha_true": 1.2,
+      "alpha_persistence": 1.9334896223722686,
+      "alpha_persistence_lo": 1.6998104302420725,
+      "alpha_persistence_hi": 2.167168814502465,
+      "K_mean": 0.8022426921047702,
+      "K_std": 0.06665278712434378,
+      "alpha_se_mean": 1.1994216189967104,
+      "alpha_se_std": 0.06437048784312262
+    },
+    {
+      "alpha_true": 1.4,
+      "alpha_persistence": 1.7893562089940585,
+      "alpha_persistence_lo": 1.5743197709132144,
+      "alpha_persistence_hi": 2.0043926470749027,
+      "K_mean": 0.6037441892266752,
+      "K_std": 0.05298879150492642,
+      "alpha_se_mean": 1.3527568770734977,
+      "alpha_se_std": 0.053316331240290095
+    },
+    {
+      "alpha_true": 1.5,
+      "alpha_persistence": 1.8385163540107805,
+      "alpha_persistence_lo": 1.6154657954907599,
+      "alpha_persistence_hi": 2.061566912530801,
+      "K_mean": 0.537605399404997,
+      "K_std": 0.044553764309995,
+      "alpha_se_mean": 1.37027830959662,
+      "alpha_se_std": 0.050212260035805534
+    },
+    {
+      "alpha_true": 1.6,
+      "alpha_persistence": 1.7938322016763788,
+      "alpha_persistence_lo": 1.577442831010716,
+      "alpha_persistence_hi": 2.010221572342042,
+      "K_mean": 0.49177429189757316,
+      "K_std": 0.028436112711664425,
+      "alpha_se_mean": 1.3108522834681866,
+      "alpha_se_std": 0.1298116944808729
+    },
+    {
+      "alpha_true": 1.8,
+      "alpha_persistence": 2.004941779502482,
+      "alpha_persistence_lo": 1.7644489087401087,
+      "alpha_persistence_hi": 2.2454346502648557,
+      "K_mean": 0.4146365157497442,
+      "K_std": 0.05904991538584791,
+      "alpha_se_mean": 1.142969567136279,
+      "alpha_se_std": 0.1754795238731598
+    },
+    {
+      "alpha_true": 1.9,
+      "alpha_persistence": 1.957692783072113,
+      "alpha_persistence_lo": 1.718342442644361,
+      "alpha_persistence_hi": 2.197043123499865,
+      "K_mean": 0.3563715376259429,
+      "K_std": 0.10083284862580784,
+      "alpha_se_mean": 1.2709188015278303,
+      "alpha_se_std": 0.25099870212779335
+    },
+    {
+      "alpha_true": 2.0,
+      "alpha_persistence": 1.6696917905271191,
+      "alpha_persistence_lo": 1.4675101400353716,
+      "alpha_persistence_hi": 1.8718734410188667,
+      "K_mean": 0.07997955720650904,
+      "K_std": 0.06556889709895028,
+      "alpha_se_mean": 1.9616151515978673,
+      "alpha_se_std": 0.028017642786283985
+    }
+  ],
+  "D": 0.0008,
+  "n_voxels": 40,
+  "n_dirs": 90,
+  "snr": 30.0
+}

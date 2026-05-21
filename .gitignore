@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Build / cache
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# LaTeX intermediates
+manuscript/*.aux
+manuscript/*.bbl
+manuscript/*.blg
+manuscript/*.fdb_latexmk
+manuscript/*.fls
+manuscript/*.log
+manuscript/*.out
+manuscript/*.synctex.gz
+manuscript/*.toc
+
+# Large data: never commit DW-MRI volumes
+*.nii
+*.nii.gz
+
+# Sherlock logs
+sherlock/logs/
+logs/
+
+# Results from real-data runs (keep simulation results small / tracked)
+results/hcp/
