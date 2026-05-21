@@ -74,21 +74,26 @@ $\stab_{\mathrm{se}}/2$ estimators using a forward model that supports
 free Gaussian, restricted Gaussian, $\stab$-stable, and mixed
 compartments.
 
-\textbf{Results:} Sublevel persistence reliably recovers the stability
-index $\stab \in \{1.2, 1.5, 1.8, 2.0\}$ on simulated alpha-stable sample
-paths (mean bias $0.03$, root-mean-square error $0.10$ at $n=1000$
-steps). On simulated DW-MRI regions (60 voxels, 90 directions, SNR $30$,
-HCP-style $b=0,1000,2000,3000$~s/mm$^{2}$), the pooled persistence-tail
-estimator separates free, restricted, and $\stab$-stable microstructures.
+\textbf{Results:} On simulated alpha-stable sample paths the
+persistence-tail estimator recovers the true stability index with mean
+bias $0.03$ and root-mean-square error $0.10$ at $n=1000$ steps.
 Applied voxelwise to $N=30$ Human Connectome Project subjects, the
-proposed $\widehat{\stab}_{\mathrm{persistence}}$ map shows a robust
-ordering across tissue classes (corpus callosum~$=2.23$,
-white matter~$=2.13$, grey matter~$=1.82$, CSF~$=1.70$; one-way ANOVA
-$F=228.5$, $p=1.6\times 10^{-48}$; every pairwise paired
-$t$-test~$p<10^{-10}$) and a positive but only moderate voxelwise
-correlation with mean kurtosis (Spearman $\rho=0.39$), indicating
-that the persistence-tail exponent carries non-redundant information
-about microstructural restriction.
+proposed $\widehat{\stab}_{\mathrm{persistence}}$ map orders tissue
+classes robustly (CC~$=2.23$, WM~$=2.13$, GM~$=1.82$, CSF~$=1.70$;
+ANOVA $F=228.5$; all pairwise paired permutation $p\le 10^{-4}$ at
+$10{,}000$ permutations). Split-half test-retest reliability across
+the 288 gradient directions is excellent in every tissue class
+(intraclass correlation ICC$(3,1)\ge 0.83$, within-subject
+coefficient of variation $\le 1.6\%$). JHU ICBM-DTI-81
+atlas-based analysis ranks the body and genu of the corpus
+callosum, the posterior limb of the internal capsule, and the
+pontine crossing tract as the most non-Gaussian tracts under
+$\widehat{\stab}_{\mathrm{persistence}}$. The voxelwise Spearman
+correlation with mean kurtosis is positive but moderate
+($\rho=0.39$), and per-tract correlations vary widely
+($\rho\in[0.1, 0.6]$ across 48 JHU regions), indicating that the
+persistence-tail exponent carries non-redundant information about
+microstructural restriction.
 
 \textbf{Conclusion:} The persistence-tail framework supplies a
 geometric, model-free non-Gaussianity descriptor of DW-MRI signals whose
@@ -561,7 +566,8 @@ panel show CSF, GM, WM, and corpus callosum (CC).}
 \centering
 \caption{Group-level statistics of $\widehat{\stab}_{\mathrm{persistence}}$
 across the four tissue classes ($N=30$ HCP subjects). Pairwise
-$p$-values are from paired-sample $t$-tests.}
+$p$-values are two-sided paired permutation tests with
+$10{,}000$ permutations.}
 \label{tab:roi}
 \small
 \begin{tabular}{lccc}
@@ -571,14 +577,99 @@ CSF                                & 1.70  & 0.08  & 1.72\\
 GM                                 & 1.82  & 0.09  & 1.86\\
 WM                                 & 2.13  & 0.09  & 2.25\\
 Corpus callosum (CC)               & 2.23  & 0.11  & 2.40\\ \midrule
-\multicolumn{4}{l}{\textit{Pairwise paired $t$-test $p$-values}}\\
-WM vs.\ GM                         & \multicolumn{3}{l}{$2.9\times 10^{-32}$}\\
-CSF vs.\ GM                        & \multicolumn{3}{l}{$1.8\times 10^{-15}$}\\
-CC vs.\ WM                         & \multicolumn{3}{l}{$1.6\times 10^{-11}$}\\
-CC vs.\ GM                         & \multicolumn{3}{l}{$8.6\times 10^{-26}$}\\
-CSF vs.\ CC                        & \multicolumn{3}{l}{$5.2\times 10^{-25}$}\\ \bottomrule
+\multicolumn{4}{l}{\textit{Pairwise paired permutation $p$-values}}\\
+WM vs.\ GM                         & \multicolumn{3}{l}{$\le 10^{-4}$ (floor)}\\
+CSF vs.\ GM                        & \multicolumn{3}{l}{$\le 10^{-4}$ (floor)}\\
+CC vs.\ WM                         & \multicolumn{3}{l}{$\le 10^{-4}$ (floor)}\\
+CC vs.\ GM                         & \multicolumn{3}{l}{$\le 10^{-4}$ (floor)}\\
+CSF vs.\ CC                        & \multicolumn{3}{l}{$\le 10^{-4}$ (floor)}\\ \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{Split-half test-retest reliability}
+HCP acquires the 90 diffusion-encoding directions per shell in two
+interleaved phase-encoding runs; we split each shell's directions
+into two halves (alternating indices) and compute
+$\widehat{\stab}_{\mathrm{persistence}}$ independently on each half.
+The two halves of the same subject thus constitute an in-acquisition
+test--retest pair. Figure~\ref{fig:split} shows the per-subject
+split-A vs.\ split-B agreement for the four tissue classes; the
+points sit tightly on the identity line in every class. The
+Shrout--Fleiss intraclass correlation ICC$(3,1)$ is
+$0.96$ in WM, $0.98$ in GM, $0.99$ in CSF, and $0.83$ in the
+midsagittal corpus callosum (Table~\ref{tab:reliability}); the
+within-subject coefficient of variation is at or below $1.6\%$
+across all classes. By the
+\citet{cicchetti1994} convention these values correspond to
+"excellent" reliability, comparable to or better than the
+reproducibility of conventional diffusion-tensor metrics on the same
+data~\citep{liang2024dti}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.6\linewidth]{../figures/fig10_split_half.pdf}
+\caption{Split-half test--retest agreement of
+$\widehat{\stab}_{\mathrm{persistence}}$ across the 288 HCP
+gradient directions (45 directions per shell per half).
+Each marker is one of $N=30$ HCP subjects; the dashed line is the
+identity.}
+\label{fig:split}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\caption{Split-half test--retest reliability of
+$\widehat{\stab}_{\mathrm{persistence}}$, $N=30$ HCP subjects. ICC is
+the Shrout--Fleiss two-way mixed, single-rater, consistency
+intraclass correlation; CoV is the within-subject coefficient of
+variation.}
+\label{tab:reliability}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ROI & ICC$(3,1)$ & within-subject CoV & Pearson $r$ & mean $|A-B|$\\
+\midrule
+WM   & 0.96 & 0.7\% & 0.99 & 0.020\\
+GM   & 0.98 & 0.7\% & 1.00 & 0.018\\
+CSF  & 0.99 & 0.6\% & 1.00 & 0.013\\
+CC   & 0.83 & 1.6\% & 0.89 & 0.037\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{JHU ICBM-DTI-81 atlas analysis}
+We registered each subject's FA map to the FMRIB58 FA template by an
+affine (12-DoF) FLIRT~\citep{jenkinson2002flirt} transform and warped
+the JHU ICBM-DTI-81 white-matter label atlas back to subject space
+with nearest-neighbour interpolation, yielding per-subject masks for
+the $48$ canonical white-matter regions of
+\citet{mori2008mricron}. Figure~\ref{fig:jhu}~(a) shows the top 15
+tracts ranked by mean
+$\widehat{\stab}_{\mathrm{persistence}}$ across $N=30$ subjects;
+panel~(b) shows MK in the same tracts. The persistence-tail biomarker
+attains its highest values in the body and genu of the corpus
+callosum, the posterior limb of the internal capsule, and the
+pontine crossing tract, in agreement with the kurtosis ranking and
+with the known location of the densest, most coherently oriented
+white-matter bundles. Across the 48 JHU regions the across-subject
+Spearman correlation between
+$\widehat{\stab}_{\mathrm{persistence}}$ and MK ranges from $0.10$
+to $0.64$ (median $0.36$), with the highest correlations in the
+cingulum and external capsule. The wide range of per-tract
+correlations rules out a simple monotonic calibration between the
+two metrics and supports the claim that the persistence-tail
+exponent provides additional, tract-dependent information.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{../figures/fig11_jhu_tracts.pdf}
+\caption{JHU ICBM-DTI-81 white-matter tract analysis ($N=30$).
+(a)~Top~15 tracts ranked by mean
+$\widehat{\stab}_{\mathrm{persistence}}$; error bars are
+across-subject standard deviations. (b)~Mean MK in the same tracts,
+plotted in the same order.}
+\label{fig:jhu}
+\end{figure*}
 
 \subsection{Comparison to mean kurtosis}
 Figure~\ref{fig:alpha-vs-k} shows the voxelwise relationship between
@@ -620,7 +711,17 @@ parent paper's Theorem~1) tying the exponent of the persistence
 lifetime tail to the stability index of the underlying $\stab$-stable
 propagator. Third, the computation is $O(n_{\mathrm{vox}}
 n_{\mathrm{shells}} n_{\mathrm{dirs}} \log n_{\mathrm{dirs}})$ and
-parallelises trivially over voxels.
+parallelises trivially over voxels. Empirically, the in-vivo
+reliability is excellent at standard HCP acquisition parameters:
+split-half ICC$(3,1)\ge 0.83$ across all tissue classes
+(Table~\ref{tab:reliability}), comparable to or exceeding the
+typical reproducibility of FA, MD, and MK reported on the same
+data~\citep{liang2024dti}. The discrimination between tissue classes
+is non-parametrically significant at the floor of $10{,}000$
+permutations (Table~\ref{tab:roi}), and the JHU
+ICBM-DTI-81 tract ranking
+(Figure~\ref{fig:jhu}) reproduces the established neuroanatomical
+hierarchy of white-matter microstructural complexity.
 
 \paragraph*{Limitations.}
 The simulation calibration of
