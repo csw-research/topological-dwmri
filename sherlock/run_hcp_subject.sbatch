@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=topo_dwmri_hcp
 #SBATCH --partition=normal
-#SBATCH --time=06:00:00
-#SBATCH --mem=32G
-#SBATCH --cpus-per-task=4
-#SBATCH --array=1-5
+#SBATCH --time=00:30:00
+#SBATCH --mem=10G
+#SBATCH --cpus-per-task=2
+#SBATCH --array=1-30%20
 #SBATCH --output=logs/hcp_%A_%a.out
 #SBATCH --error=logs/hcp_%A_%a.err
 
