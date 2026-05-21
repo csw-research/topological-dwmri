@@ -1,8 +1,5 @@
-# One HCP subject ID per line; lines beginning with '#' are ignored.
-# Edit this file before submitting the array job.
-# Example (uncomment and replace with your IDs):
-# 100307
-# 103818
-# 105115
-# 110411
-# 111312
+100307
+100408
+100610
+101006
+101107
