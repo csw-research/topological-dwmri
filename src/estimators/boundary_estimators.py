@@ -103,16 +103,30 @@ class WassersteinAnomalyEstimator:
         self,
         n_reference_paths: int = 50,
         rng_seed: int = 20260522,
+        max_reference_length: int = 10_000,
+        empirical_subsample: int = 20_000,
     ):
+        """The Brownian-bridge reference paths are capped at
+        ``max_reference_length`` to keep persistence computation tractable;
+        the in-vivo empirical lifetimes are subsampled to
+        ``empirical_subsample`` before the Wasserstein computation. Both
+        are scale-equivariant: the ROI walk has been pre-scaled by its
+        standard deviation in :meth:`fit`, and the cached reference is
+        pre-scaled by its own standard deviation, so W1 is dimensionless.
+        """
         self.n_reference_paths = n_reference_paths
         self.rng_seed = rng_seed
+        self.max_reference_length = int(max_reference_length)
+        self.empirical_subsample = int(empirical_subsample)
 
     def _get_reference(self, n: int) -> NDArray[np.float64]:
         """Return a long pooled vector of Brownian-bridge persistence
-        lifetimes (rescaled to unit variance) for path length ``n``.
+        lifetimes (rescaled to unit variance). The reference path length
+        is capped at ``self.max_reference_length`` for tractability.
         """
-        if n in self._reference_cache:
-            return self._reference_cache[n]
+        n_capped = min(int(n), self.max_reference_length)
+        if n_capped in self._reference_cache:
+            return self._reference_cache[n_capped]
         from src.utils.parent_bridge import (
             sublevel_persistence_1d,
             persistence_lifetimes,
@@ -120,7 +134,7 @@ class WassersteinAnomalyEstimator:
         rng = np.random.default_rng(self.rng_seed)
         all_life = []
         for _ in range(self.n_reference_paths):
-            increments = rng.normal(0.0, 1.0, size=n)
+            increments = rng.normal(0.0, 1.0, size=n_capped)
             increments -= increments.mean()
             path = np.cumsum(increments)
             sigma = path.std() or 1.0
@@ -128,7 +142,7 @@ class WassersteinAnomalyEstimator:
             if life.size > 0:
                 all_life.append(life)
         ref = np.sort(np.concatenate(all_life)) if all_life else np.array([1.0])
-        self._reference_cache[n] = ref
+        self._reference_cache[n_capped] = ref
         return ref
 
     def fit(
@@ -142,7 +156,16 @@ class WassersteinAnomalyEstimator:
         if life.size < 20 or path_length is None:
             return {"W1": np.nan, "n_lifetimes": int(life.size)}
         sigma = path_std if (path_std is not None and path_std > 0) else 1.0
-        empirical = np.sort(life) / sigma
+        empirical = life / sigma
+        # Subsample if the empirical sample is huge: Wasserstein on >1e5
+        # samples is unnecessarily expensive and the distance estimate is
+        # already converged.
+        if empirical.size > self.empirical_subsample:
+            rng = np.random.default_rng(self.rng_seed + 1)
+            idx = rng.choice(empirical.size, self.empirical_subsample,
+                              replace=False)
+            empirical = empirical[idx]
+        empirical = np.sort(empirical)
         reference = self._get_reference(int(path_length))
         try:
             d = wasserstein_distance(empirical, reference)
