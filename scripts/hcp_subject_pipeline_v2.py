@@ -249,6 +249,9 @@ def main():
                    help="Skip JHU atlas registration (FSL not available).")
     p.add_argument("--skip-splits", action="store_true",
                    help="Skip split-half test-retest computation.")
+    p.add_argument("--denoise", action="store_true",
+                   help="Apply MP-PCA denoising (Veraart 2016) before "
+                        "computing any maps. Adds ~3 min compute per subject.")
     args = p.parse_args()
 
     out_dir = Path(args.out); out_dir.mkdir(parents=True, exist_ok=True)
@@ -271,6 +274,12 @@ def main():
         scale = np.eye(4); scale[:3, :3] *= s
         affine = affine @ scale
         print(f"  downsampled to {data.shape}", flush=True)
+
+    if args.denoise:
+        print(f"[{args.subject}] MP-PCA denoising...", flush=True)
+        from dipy.denoise.localpca import mppca
+        data = mppca(data, patch_radius=2, mask=mask).astype(np.float32)
+        print(f"  denoised", flush=True)
 
     print(f"[{args.subject}] DTI fit...", flush=True)
     FA, MD = fit_dti(data, mask, bvals, bvecs)

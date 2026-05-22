@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=topo_dwmri_retest
 #SBATCH --partition=normal
-#SBATCH --time=01:00:00
-#SBATCH --mem=12G
+#SBATCH --time=01:30:00
+#SBATCH --mem=16G
 #SBATCH --cpus-per-task=2
 #SBATCH --array=1-44%20
-#SBATCH --output=logs/retest_%A_%a.out
-#SBATCH --error=logs/retest_%A_%a.err
+#SBATCH --output=logs/retest_dn_%A_%a.out
+#SBATCH --error=logs/retest_dn_%A_%a.err
 
 # Run the v2 pipeline on BOTH visits for each retest subject.
 # Subjects come from sherlock/retest_subjects.txt (44 subjects).
@@ -30,7 +30,7 @@ export PATH=${FSLDIR}/bin:${PATH}
 export FSLOUTPUTTYPE=NIFTI_GZ
 [ -f "${FSLDIR}/etc/fslconf/fsl.sh" ] && . "${FSLDIR}/etc/fslconf/fsl.sh"
 
-mkdir -p "${PROJECT}/logs" "${PROJECT}/results/retest_v1" "${PROJECT}/results/retest_v2"
+mkdir -p "${PROJECT}/logs" "${PROJECT}/results/retest_v1_dn" "${PROJECT}/results/retest_v2_dn"
 export TOPO_DWMRI_PARENT_PATH="${PARENT}"
 
 SUBJECT=$(sed -n "${SLURM_ARRAY_TASK_ID}p" "${PROJECT}/sherlock/retest_subjects.txt" \
@@ -56,10 +56,11 @@ python scripts/hcp_subject_pipeline_v2.py \
     --bvals   "${V1_DIR}/bvals" \
     --bvecs   "${V1_DIR}/bvecs" \
     --mask    "${V1_DIR}/nodif_brain_mask.nii.gz" \
-    --out     "${PROJECT}/results/retest_v1/${SUBJECT}" \
+    --out     "${PROJECT}/results/retest_v1_dn/${SUBJECT}" \
     --pooling-radius 1 \
     --downsample 2 \
-    --skip-splits
+    --skip-splits \
+    --denoise
 
 # Visit 2 (retest)
 python scripts/hcp_subject_pipeline_v2.py \
@@ -68,7 +69,8 @@ python scripts/hcp_subject_pipeline_v2.py \
     --bvals   "${V2_DIR}/bvals" \
     --bvecs   "${V2_DIR}/bvecs" \
     --mask    "${V2_DIR}/nodif_brain_mask.nii.gz" \
-    --out     "${PROJECT}/results/retest_v2/${SUBJECT}" \
+    --out     "${PROJECT}/results/retest_v2_dn/${SUBJECT}" \
     --pooling-radius 1 \
     --downsample 2 \
-    --skip-splits
+    --skip-splits \
+    --denoise
