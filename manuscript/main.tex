@@ -65,11 +65,18 @@ Stanford, California 94305, USA. ORCID: 0000-0002-4266-2673.}
 % ===========================================================================
 \begin{abstract}
 \noindent
-\textbf{Purpose:} To introduce a topological non-Gaussianity biomarker for
-diffusion-weighted magnetic resonance imaging (DW-MRI) derived from the
-sublevel-set persistent homology of multi-shell, multi-direction signals,
-and to relate it to the L\'evy-stable parametrisation of the molecular
-displacement distribution.
+\textbf{Purpose:} The two dominant non-Gaussianity descriptors in
+diffusion-weighted MRI, the diffusion-kurtosis~$K$ and the
+stretched-exponential exponent $\stab_{\mathrm{se}}/2$, are
+phenomenological signal-domain summaries that lack a sample-path-level
+derivation and that conflate restriction, heterogeneity, and noise
+into a single scalar. We introduce a model-free non-Gaussianity
+descriptor whose asymptotic behaviour is governed by a limit theorem
+for persistent homology of $\stab$-stable L\'evy paths
+(\citealp{warioba2026levy}; see Theorem~\ref{thm:tail}), and we apply
+it to in-vivo Human Connectome Project (HCP) data to characterise the
+regime in which the estimator yields a per-subject biomarker of
+non-Gaussian molecular displacement.
 
 \textbf{Theory and Methods:} For a voxel population in which the
 underlying molecular displacement distribution is symmetric
@@ -761,24 +768,94 @@ persistence step tractable does not affect the ROI-level estimator
 voxelwise persistence map; recovering full HCP resolution would
 require a more efficient persistence implementation.
 
+\paragraph*{Comparison to prior anomalous-diffusion estimates.}
+Several groups have estimated a single stability index in the brain
+by direct nonlinear fitting of fractional-order Bloch--Torrey or
+continuous-time random-walk models to the multi-shell signal. In
+healthy WM, \citet{magin2008anomalous} report $\stab \approx
+1.0$--$1.4$ and \citet{ingo2014} report $\stab \approx 0.7$--$0.9$
+(both depending on tissue and acquisition); in pathological tissue,
+\citet{karaman2016} report tumour-grade-dependent values
+$\stab \in [0.6, 0.9]$ that discriminate low- from high-grade
+pediatric brain tumours. Our ROI-level
+$\widehat{\stab}_{\mathrm{persistence}}$ in cortical GM
+($1.03 \pm 0.08$) and CSF ($0.85 \pm 0.13$) sits at the upper end of
+these prior estimates, consistent with WU-Minn HCP's
+$b_{\max}=3000$~s/mm$^2$ acquisition probing a more Gaussian regime
+than the high-$b$ protocols used in the CTRW literature. The
+qualitative agreement with prior CTRW-fit results, despite our
+estimator being model-free and theirs being model-fit, is supportive
+evidence that both quantities are measuring related properties of
+the underlying displacement propagator. The WM/CC values
+$\stab \approx 1.95$--$2.19$ are at the Gaussian-boundary degeneracy
+of Theorem~\ref{thm:tail} and should not be directly compared to the
+CTRW WM estimates without first applying one of the
+estimator/preprocessing fixes outlined under Limitations.
+
 \paragraph*{Relationship to existing topology-based DW-MRI work.}
 Previous topological-data-analysis applications to DW-MRI have focused
 on the persistence of \emph{fibre-orientation distribution} fields
 \citep{cieslak2018,wang2025persistent} or on connectomic
 graphs~\citep{sizemore2018}. Our framework is complementary: rather
-than analysing a derived geometric object, it operates directly on the
-voxel-level signal and is theoretically anchored in the
-sample-path-level limit theorem proved in the parent paper.
+than analysing a derived geometric object, it operates directly on
+the voxel-level signal and is theoretically anchored in the
+sample-path-level limit theorem proved in companion work
+\citep{warioba2026levy}.
 
-\paragraph*{Outlook.}
-A natural next step is to combine $\widehat{\stab}_{\mathrm{persistence}}$
-with denoised, high-$b$-shell acquisitions and to evaluate clinical
-contrast in stroke (where ischaemic restriction sharply alters the
-displacement-tail structure) and tumour grading (where heterogeneous
-microenvironments produce mixed $\stab$-stable signatures). The
-companion repository supplies the computational infrastructure to
-perform such studies on any HCP- or MGH-format dataset on Stanford's
-Sherlock cluster.
+\paragraph*{Clinical implications.}
+The heavy-tail regime in which
+$\widehat{\stab}_{\mathrm{persistence}}$ is reproducible at the
+per-subject level (GM, CSF; ICC $0.55$--$0.63$) coincides with the
+tissues where established compartment models such as NODDI and
+SANDI~\citep{palombo2018} are most heavily used. Three specific
+clinical applications are immediately addressable. (i)~\emph{Chronic
+pain.} Cortical-grey-matter microstructural alterations in the
+insula, anterior cingulate cortex, and somatosensory cortex are
+reported in chronic pain populations; an HCP-style multi-shell
+protocol followed by ROI-level
+$\widehat{\stab}_{\mathrm{persistence}}$ provides a theory-anchored
+non-Gaussianity descriptor that does not assume a specific
+three-compartment ansatz. (ii)~\emph{Prodromal Alzheimer's disease.}
+Cortical-disarray and cortical-microstructure measures from dMRI are
+an active candidate for pre-symptomatic detection; the ADNI and UK
+Biobank cohorts both supply HCP-compatible multi-shell dMRI with
+longitudinal cognitive outcomes, and a direct test of whether
+baseline GM $\widehat{\stab}_{\mathrm{persistence}}$ predicts
+mild-cognitive-impairment-to-Alzheimer's-disease conversion is
+feasible with the present pipeline. (iii)~\emph{Tumour grading.}
+\citet{karaman2016} showed that direct nonlinear CTRW $\stab$
+estimates discriminate low- from high-grade tumours; the ROI-level
+persistence-tail estimator can be applied to clinical
+high-$b$-shell tumour cohorts as a model-free alternative whose
+estimator-level properties are guaranteed by
+Theorem~\ref{thm:tail}. Application in white-matter tracts is
+restricted by the Gaussian-boundary degeneracy and awaits the
+estimator improvements outlined in Limitations.
+
+% ===========================================================================
+\section{Conclusion}\label{sec:conclusion}
+
+We have developed a model-free, theoretically anchored
+non-Gaussianity descriptor for diffusion-weighted MRI by applying
+sublevel-set persistent homology to an alpha-stable L\'evy-bridge
+construction of the multi-shell signal at the region-of-interest
+level. The estimator is consistent for the stability index of the
+underlying displacement propagator on simulated data, partitions the
+in-vivo brain into a heavy-tail regime (cortical grey matter, CSF)
+and a Gaussian-boundary regime (white matter, corpus callosum) with
+high statistical confidence ($N=30$; all pairwise permutation
+$p\le 10^{-4}$), and achieves per-subject scan-rescan reliability in
+the heavy-tail regime that is comparable to standard non-Gaussianity
+biomarkers on the same data ($N=44$ Retest cohort; ICC$(3,1)=0.55$
+in cortical grey matter and $0.63$ in CSF). The two-regime
+empirical pattern matches the prediction of the underlying limit
+theorem: the Hill-type lifetime estimator is consistent on
+$\stab$-stable processes with $\stab<2$ but degenerate at the
+Gaussian boundary, so reproducibility in white matter and corpus
+callosum (where $\stab$ approaches~$2$) is recoverable only after
+estimator-level extensions. The pipeline and all derived results
+are openly released to support immediate replication and extension
+on HCP- and MGH-format datasets.
 
 % ===========================================================================
 \section*{Data and Code Availability}
