@@ -46,6 +46,10 @@ from src.utils.parent_bridge import (
     sublevel_persistence_1d,
     persistence_lifetimes,
 )
+from src.estimators.boundary_estimators import (
+    GenParetoShapeEstimator,
+    WassersteinAnomalyEstimator,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -73,23 +77,33 @@ def roi_alpha_persistence(
 ):
     """Pool per-(voxel, direction) attenuation curves across the ROI;
     construct one alpha-stable bridge per shell, pool lifetimes across
-    shells, apply Hill estimator.
+    shells, and apply three estimators:
 
-    Returns a dict {alpha_hat, n_lifetimes, k_used, n_voxels}.
+      * Hill estimator (alpha_hat)             -- heavy-tail regime
+      * Generalised Pareto shape (xi)          -- works across the
+                                                  Gaussian boundary
+      * Wasserstein-to-Brownian (W1)            -- model-free anomaly score
+
+    Returns a dict including all three estimators plus walk metadata
+    that W1 depends on.
     """
     b0_idx = np.where(bvals <= tol)[0]
     if b0_idx.size == 0:
-        return {"alpha_hat": np.nan, "n_lifetimes": 0,
-                "k_used": 0, "n_voxels": 0}
+        return {"alpha_hat": np.nan, "xi": np.nan, "W1": np.nan,
+                 "n_lifetimes": 0, "k_used": 0, "n_voxels": 0,
+                 "walk_length": 0, "walk_std": 0.0}
     b0_mean = data[..., b0_idx].mean(axis=-1).astype(np.float32)
     b0_safe = np.maximum(b0_mean, 1.0)
     n_vox = int(roi_mask.sum())
     if n_vox == 0:
-        return {"alpha_hat": np.nan, "n_lifetimes": 0,
-                "k_used": 0, "n_voxels": 0}
+        return {"alpha_hat": np.nan, "xi": np.nan, "W1": np.nan,
+                 "n_lifetimes": 0, "k_used": 0, "n_voxels": 0,
+                 "walk_length": 0, "walk_std": 0.0}
     inds = np.argwhere(roi_mask)
 
     all_lifetimes = []
+    walk_length = 0
+    all_walks_std = []
     for s in shells:
         idx = np.where(np.abs(bvals - s) <= tol)[0]
         if idx.size < 4:
@@ -104,32 +118,55 @@ def roi_alpha_persistence(
             y = np.nan_to_num(y, nan=0.0, posinf=0.0, neginf=0.0)
         # Centre across the (voxel, direction) ensemble
         y = y - y.mean()
-        # Build the walk by row-major concatenation, then cumulative sum
         flat = y.ravel(order="C")
         Z = np.cumsum(flat)
+        if Z.size > walk_length:
+            walk_length = int(Z.size)
+        all_walks_std.append(float(np.std(Z)))
         diag = sublevel_persistence_1d(Z)
         life = persistence_lifetimes(diag)
         if life.size > 0:
             all_lifetimes.append(life)
 
     if not all_lifetimes:
-        return {"alpha_hat": np.nan, "n_lifetimes": 0,
-                "k_used": 0, "n_voxels": n_vox}
+        return {"alpha_hat": np.nan, "xi": np.nan, "W1": np.nan,
+                 "n_lifetimes": 0, "k_used": 0, "n_voxels": n_vox,
+                 "walk_length": int(walk_length),
+                 "walk_std": float(np.mean(all_walks_std) if all_walks_std else 0.0)}
 
-    L = np.sort(np.concatenate(all_lifetimes))[::-1]
+    L = np.concatenate(all_lifetimes)
     N = L.size
-    if N < min_k + 1:
-        return {"alpha_hat": np.nan, "n_lifetimes": N,
-                "k_used": 0, "n_voxels": n_vox}
-    k = max(min_k, int(k_fraction * N))
-    k = min(k, N - 1)
-    log_top = np.log(L[:k]); log_thresh = np.log(L[k])
-    m = float(np.mean(log_top - log_thresh))
-    if m <= 0:
-        return {"alpha_hat": np.nan, "n_lifetimes": N,
-                "k_used": k, "n_voxels": n_vox}
-    return {"alpha_hat": 1.0 / m, "n_lifetimes": N, "k_used": k,
-            "n_voxels": n_vox}
+
+    # Hill estimator (legacy)
+    L_desc = np.sort(L)[::-1]
+    alpha_hat, k_used = np.nan, 0
+    if N >= min_k + 1:
+        k = max(min_k, int(k_fraction * N))
+        k = min(k, N - 1)
+        k_used = k
+        m = float(np.mean(np.log(L_desc[:k]) - np.log(L_desc[k])))
+        if m > 0:
+            alpha_hat = 1.0 / m
+
+    # Generalised Pareto shape (boundary-aware)
+    gp = GenParetoShapeEstimator(k_fraction=0.20, min_k=15).fit(L)
+    xi = gp["xi"]
+
+    # Wasserstein anomaly score
+    walk_std = float(np.mean(all_walks_std) if all_walks_std else 1.0)
+    wa = WassersteinAnomalyEstimator().fit(
+        L, path_length=int(walk_length), path_std=walk_std,
+    )
+    W1 = wa["W1"]
+
+    return {"alpha_hat": float(alpha_hat),
+             "xi": float(xi),
+             "W1": float(W1),
+             "n_lifetimes": int(N),
+             "k_used": int(k_used),
+             "n_voxels": int(n_vox),
+             "walk_length": int(walk_length),
+             "walk_std": float(walk_std)}
 
 
 # ---------------------------------------------------------------------------
@@ -204,14 +241,20 @@ def main():
             summary[f"{name}_{arr_name}"] = (float(np.mean(vals))
                                               if vals.size else float("nan"))
         summary[f"{name}_alpha_persistence"] = float(r["alpha_hat"])
+        summary[f"{name}_xi"] = float(r["xi"])
+        summary[f"{name}_W1"] = float(r["W1"])
         summary[f"{name}_n_lifetimes"] = int(r["n_lifetimes"])
         summary[f"{name}_n_voxels"] = int(r["n_voxels"])
+        summary[f"{name}_walk_length"] = int(r["walk_length"])
+        summary[f"{name}_walk_std"] = float(r["walk_std"])
 
-    print(f"[{args.subject}] ROI alpha_persistence...", flush=True)
+    print(f"[{args.subject}] ROI estimators (alpha_hill, xi, W1)...", flush=True)
     for name, lbl in [("WM", 1), ("GM", 2), ("CSF", 3), ("CC", 4)]:
         m3 = tissue == lbl
         add_roi(name, m3)
         print(f"  {name}: alpha={summary[f'{name}_alpha_persistence']:.3f} "
+              f"xi={summary[f'{name}_xi']:+.3f} "
+              f"W1={summary[f'{name}_W1']:.3f} "
               f"(n_vox={summary[f'{name}_n_voxels']}, "
               f"n_life={summary[f'{name}_n_lifetimes']})", flush=True)
 

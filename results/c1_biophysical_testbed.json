@@ -1,0 +1,812 @@
+[
+  {
+    "alpha_hill": 1.4008067134172786,
+    "xi": 0.726645669340318,
+    "W1": 0.06953154224449659,
+    "n_lifetimes": 3569,
+    "family": "free_D_0.7",
+    "kind": "free",
+    "rep": 0
+  },
+  {
+    "alpha_hill": 1.2241989075179074,
+    "xi": 0.9236474220590882,
+    "W1": 0.055040358278832996,
+    "n_lifetimes": 3434,
+    "family": "free_D_0.7",
+    "kind": "free",
+    "rep": 1
+  },
+  {
+    "alpha_hill": 1.3489849808540002,
+    "xi": 0.8075749999003874,
+    "W1": 0.06842507756689573,
+    "n_lifetimes": 3576,
+    "family": "free_D_0.7",
+    "kind": "free",
+    "rep": 2
+  },
+  {
+    "alpha_hill": 1.3083565371846968,
+    "xi": 0.7827916508460173,
+    "W1": 0.06513172525576516,
+    "n_lifetimes": 3598,
+    "family": "free_D_0.7",
+    "kind": "free",
+    "rep": 3
+  },
+  {
+    "alpha_hill": 1.3017825819673436,
+    "xi": 0.8225970500562232,
+    "W1": 0.051912845559785745,
+    "n_lifetimes": 3628,
+    "family": "free_D_0.7",
+    "kind": "free",
+    "rep": 4
+  },
+  {
+    "alpha_hill": 1.329848780363984,
+    "xi": 0.754409250911626,
+    "W1": 0.06267008478937959,
+    "n_lifetimes": 3503,
+    "family": "free_D_0.7",
+    "kind": "free",
+    "rep": 5
+  },
+  {
+    "alpha_hill": 1.5127353805468309,
+    "xi": 0.6551853667714207,
+    "W1": 0.07627257188613784,
+    "n_lifetimes": 3603,
+    "family": "free_D_0.7",
+    "kind": "free",
+    "rep": 6
+  },
+  {
+    "alpha_hill": 1.2635308876823108,
+    "xi": 0.8192995778539456,
+    "W1": 0.050943252280549044,
+    "n_lifetimes": 3701,
+    "family": "free_D_0.7",
+    "kind": "free",
+    "rep": 7
+  },
+  {
+    "alpha_hill": 1.420187805168384,
+    "xi": 0.7513631821358022,
+    "W1": 0.06761895964443125,
+    "n_lifetimes": 3527,
+    "family": "free_D_0.7",
+    "kind": "free",
+    "rep": 8
+  },
+  {
+    "alpha_hill": 1.3303433425033309,
+    "xi": 0.7954123069499257,
+    "W1": 0.05364206933177528,
+    "n_lifetimes": 3511,
+    "family": "free_D_0.7",
+    "kind": "free",
+    "rep": 9
+  },
+  {
+    "alpha_hill": 1.3510311760075677,
+    "xi": 0.6556031185766683,
+    "W1": 0.0551019225893445,
+    "n_lifetimes": 3660,
+    "family": "free_D_1.0",
+    "kind": "free",
+    "rep": 0
+  },
+  {
+    "alpha_hill": 1.3429459256647942,
+    "xi": 0.7075194346080129,
+    "W1": 0.0540258428499121,
+    "n_lifetimes": 3706,
+    "family": "free_D_1.0",
+    "kind": "free",
+    "rep": 1
+  },
+  {
+    "alpha_hill": 1.3300226493743514,
+    "xi": 0.6506374087193663,
+    "W1": 0.06113560676807878,
+    "n_lifetimes": 3697,
+    "family": "free_D_1.0",
+    "kind": "free",
+    "rep": 2
+  },
+  {
+    "alpha_hill": 1.3636516521404038,
+    "xi": 0.6675899830755319,
+    "W1": 0.06400407162459279,
+    "n_lifetimes": 3658,
+    "family": "free_D_1.0",
+    "kind": "free",
+    "rep": 3
+  },
+  {
+    "alpha_hill": 1.351618057924349,
+    "xi": 0.7064514311283119,
+    "W1": 0.04806555062147419,
+    "n_lifetimes": 3731,
+    "family": "free_D_1.0",
+    "kind": "free",
+    "rep": 4
+  },
+  {
+    "alpha_hill": 1.330482060522477,
+    "xi": 0.6612556718232008,
+    "W1": 0.06214505727560961,
+    "n_lifetimes": 3662,
+    "family": "free_D_1.0",
+    "kind": "free",
+    "rep": 5
+  },
+  {
+    "alpha_hill": 1.3007501970167539,
+    "xi": 0.7326970217884528,
+    "W1": 0.05992090659498542,
+    "n_lifetimes": 3667,
+    "family": "free_D_1.0",
+    "kind": "free",
+    "rep": 6
+  },
+  {
+    "alpha_hill": 1.315772007244009,
+    "xi": 0.646113961238113,
+    "W1": 0.06491733883782112,
+    "n_lifetimes": 3754,
+    "family": "free_D_1.0",
+    "kind": "free",
+    "rep": 7
+  },
+  {
+    "alpha_hill": 1.3415774795628597,
+    "xi": 0.7165553799220967,
+    "W1": 0.04308467856529851,
+    "n_lifetimes": 3703,
+    "family": "free_D_1.0",
+    "kind": "free",
+    "rep": 8
+  },
+  {
+    "alpha_hill": 1.3328937623576924,
+    "xi": 0.7226050657672421,
+    "W1": 0.05520519573918405,
+    "n_lifetimes": 3630,
+    "family": "free_D_1.0",
+    "kind": "free",
+    "rep": 9
+  },
+  {
+    "alpha_hill": 1.4817226621508435,
+    "xi": 0.5783472720020579,
+    "W1": 0.04213608578511485,
+    "n_lifetimes": 3811,
+    "family": "free_D_1.5",
+    "kind": "free",
+    "rep": 0
+  },
+  {
+    "alpha_hill": 1.5243871880154987,
+    "xi": 0.5615382491854445,
+    "W1": 0.0511106176238814,
+    "n_lifetimes": 3892,
+    "family": "free_D_1.5",
+    "kind": "free",
+    "rep": 1
+  },
+  {
+    "alpha_hill": 1.4429990599653322,
+    "xi": 0.6332066714944635,
+    "W1": 0.04468960660702598,
+    "n_lifetimes": 3799,
+    "family": "free_D_1.5",
+    "kind": "free",
+    "rep": 2
+  },
+  {
+    "alpha_hill": 1.4255750853002267,
+    "xi": 0.5721610319459383,
+    "W1": 0.029832440247506344,
+    "n_lifetimes": 3833,
+    "family": "free_D_1.5",
+    "kind": "free",
+    "rep": 3
+  },
+  {
+    "alpha_hill": 1.4470140343859044,
+    "xi": 0.6005916384857442,
+    "W1": 0.03901236009003375,
+    "n_lifetimes": 3863,
+    "family": "free_D_1.5",
+    "kind": "free",
+    "rep": 4
+  },
+  {
+    "alpha_hill": 1.507050848376319,
+    "xi": 0.5600473460003466,
+    "W1": 0.04937715477094666,
+    "n_lifetimes": 3784,
+    "family": "free_D_1.5",
+    "kind": "free",
+    "rep": 5
+  },
+  {
+    "alpha_hill": 1.4618608590049955,
+    "xi": 0.6121895902691573,
+    "W1": 0.0360272065682626,
+    "n_lifetimes": 3743,
+    "family": "free_D_1.5",
+    "kind": "free",
+    "rep": 6
+  },
+  {
+    "alpha_hill": 1.5109662428128445,
+    "xi": 0.5448569058559395,
+    "W1": 0.03418068346464891,
+    "n_lifetimes": 3832,
+    "family": "free_D_1.5",
+    "kind": "free",
+    "rep": 7
+  },
+  {
+    "alpha_hill": 1.4069570649883572,
+    "xi": 0.6153341204416032,
+    "W1": 0.04514706503090106,
+    "n_lifetimes": 3786,
+    "family": "free_D_1.5",
+    "kind": "free",
+    "rep": 8
+  },
+  {
+    "alpha_hill": 1.4409242659585708,
+    "xi": 0.6283510977523843,
+    "W1": 0.04369362418407787,
+    "n_lifetimes": 3802,
+    "family": "free_D_1.5",
+    "kind": "free",
+    "rep": 9
+  },
+  {
+    "alpha_hill": 10.594594726118176,
+    "xi": -0.16685580474695175,
+    "W1": 0.8839663375492971,
+    "n_lifetimes": 377,
+    "family": "restricted_axon_R_strong",
+    "kind": "restricted",
+    "rep": 0
+  },
+  {
+    "alpha_hill": 9.092883442818007,
+    "xi": -0.052770470832873256,
+    "W1": 0.7935890115434638,
+    "n_lifetimes": 361,
+    "family": "restricted_axon_R_strong",
+    "kind": "restricted",
+    "rep": 1
+  },
+  {
+    "alpha_hill": 9.127040722367529,
+    "xi": -0.008789947335991559,
+    "W1": 0.8247515702505354,
+    "n_lifetimes": 384,
+    "family": "restricted_axon_R_strong",
+    "kind": "restricted",
+    "rep": 2
+  },
+  {
+    "alpha_hill": 11.937044211496989,
+    "xi": -0.3962603557535532,
+    "W1": 0.8037049500803226,
+    "n_lifetimes": 381,
+    "family": "restricted_axon_R_strong",
+    "kind": "restricted",
+    "rep": 3
+  },
+  {
+    "alpha_hill": 10.079025608738425,
+    "xi": -0.2308594746761361,
+    "W1": 0.9250234536879578,
+    "n_lifetimes": 395,
+    "family": "restricted_axon_R_strong",
+    "kind": "restricted",
+    "rep": 4
+  },
+  {
+    "alpha_hill": 10.222029366403481,
+    "xi": -0.0047453242927182615,
+    "W1": 0.8178040598680558,
+    "n_lifetimes": 352,
+    "family": "restricted_axon_R_strong",
+    "kind": "restricted",
+    "rep": 5
+  },
+  {
+    "alpha_hill": 7.95673355642247,
+    "xi": -0.05072148007377072,
+    "W1": 1.04724724477738,
+    "n_lifetimes": 354,
+    "family": "restricted_axon_R_strong",
+    "kind": "restricted",
+    "rep": 6
+  },
+  {
+    "alpha_hill": 10.81211291178036,
+    "xi": -0.13736551398954128,
+    "W1": 0.7877116430146063,
+    "n_lifetimes": 380,
+    "family": "restricted_axon_R_strong",
+    "kind": "restricted",
+    "rep": 7
+  },
+  {
+    "alpha_hill": 9.02074760962943,
+    "xi": -0.06208293034507875,
+    "W1": 0.8220178809730612,
+    "n_lifetimes": 372,
+    "family": "restricted_axon_R_strong",
+    "kind": "restricted",
+    "rep": 8
+  },
+  {
+    "alpha_hill": 10.723519708030702,
+    "xi": -0.31973007668449205,
+    "W1": 0.6540850683543636,
+    "n_lifetimes": 385,
+    "family": "restricted_axon_R_strong",
+    "kind": "restricted",
+    "rep": 9
+  },
+  {
+    "alpha_hill": 8.831488849084336,
+    "xi": -0.27794463067197817,
+    "W1": 0.5989364530212978,
+    "n_lifetimes": 436,
+    "family": "restricted_axon_R_medium",
+    "kind": "restricted",
+    "rep": 0
+  },
+  {
+    "alpha_hill": 7.909489292830674,
+    "xi": 0.12466831315079226,
+    "W1": 0.5327994777811753,
+    "n_lifetimes": 450,
+    "family": "restricted_axon_R_medium",
+    "kind": "restricted",
+    "rep": 1
+  },
+  {
+    "alpha_hill": 11.40512138107868,
+    "xi": -0.12691287723914874,
+    "W1": 0.48408124474770714,
+    "n_lifetimes": 445,
+    "family": "restricted_axon_R_medium",
+    "kind": "restricted",
+    "rep": 2
+  },
+  {
+    "alpha_hill": 7.404379767504992,
+    "xi": 0.15112873692313852,
+    "W1": 0.6050708487800435,
+    "n_lifetimes": 439,
+    "family": "restricted_axon_R_medium",
+    "kind": "restricted",
+    "rep": 3
+  },
+  {
+    "alpha_hill": 9.912376490472205,
+    "xi": -0.07581925141793733,
+    "W1": 0.6169217488654153,
+    "n_lifetimes": 434,
+    "family": "restricted_axon_R_medium",
+    "kind": "restricted",
+    "rep": 4
+  },
+  {
+    "alpha_hill": 10.101895153249187,
+    "xi": -0.023254903800450706,
+    "W1": 0.7261563957618803,
+    "n_lifetimes": 435,
+    "family": "restricted_axon_R_medium",
+    "kind": "restricted",
+    "rep": 5
+  },
+  {
+    "alpha_hill": 12.088174133196183,
+    "xi": -0.07432882926206683,
+    "W1": 0.6923809751164659,
+    "n_lifetimes": 431,
+    "family": "restricted_axon_R_medium",
+    "kind": "restricted",
+    "rep": 6
+  },
+  {
+    "alpha_hill": 8.977543013782642,
+    "xi": 0.09115856396252957,
+    "W1": 0.5739085287155226,
+    "n_lifetimes": 456,
+    "family": "restricted_axon_R_medium",
+    "kind": "restricted",
+    "rep": 7
+  },
+  {
+    "alpha_hill": 6.94777764275573,
+    "xi": 0.17471785133534964,
+    "W1": 0.6044514754299893,
+    "n_lifetimes": 419,
+    "family": "restricted_axon_R_medium",
+    "kind": "restricted",
+    "rep": 8
+  },
+  {
+    "alpha_hill": 7.3555349676784,
+    "xi": 0.08901137088895898,
+    "W1": 0.6067999803081215,
+    "n_lifetimes": 424,
+    "family": "restricted_axon_R_medium",
+    "kind": "restricted",
+    "rep": 9
+  },
+  {
+    "alpha_hill": 6.170636336702562,
+    "xi": -0.1637595875685517,
+    "W1": 0.3358117567970575,
+    "n_lifetimes": 697,
+    "family": "restricted_axon_R_weak",
+    "kind": "restricted",
+    "rep": 0
+  },
+  {
+    "alpha_hill": 6.369720339269637,
+    "xi": -0.2412066902663132,
+    "W1": 0.40630382486281735,
+    "n_lifetimes": 704,
+    "family": "restricted_axon_R_weak",
+    "kind": "restricted",
+    "rep": 1
+  },
+  {
+    "alpha_hill": 6.31147584593966,
+    "xi": -0.3862425363344987,
+    "W1": 0.3806882664130753,
+    "n_lifetimes": 694,
+    "family": "restricted_axon_R_weak",
+    "kind": "restricted",
+    "rep": 2
+  },
+  {
+    "alpha_hill": 7.062741900886058,
+    "xi": -0.296498347827586,
+    "W1": 0.2821527300691701,
+    "n_lifetimes": 667,
+    "family": "restricted_axon_R_weak",
+    "kind": "restricted",
+    "rep": 3
+  },
+  {
+    "alpha_hill": 5.845447039645709,
+    "xi": -0.3307577593435179,
+    "W1": 0.3252763617753822,
+    "n_lifetimes": 679,
+    "family": "restricted_axon_R_weak",
+    "kind": "restricted",
+    "rep": 4
+  },
+  {
+    "alpha_hill": 7.054765839460141,
+    "xi": -0.25439959517792,
+    "W1": 0.42689893435388304,
+    "n_lifetimes": 681,
+    "family": "restricted_axon_R_weak",
+    "kind": "restricted",
+    "rep": 5
+  },
+  {
+    "alpha_hill": 5.891334847126416,
+    "xi": -0.19153496420721178,
+    "W1": 0.3113689197894997,
+    "n_lifetimes": 685,
+    "family": "restricted_axon_R_weak",
+    "kind": "restricted",
+    "rep": 6
+  },
+  {
+    "alpha_hill": 6.936102251856494,
+    "xi": -0.14816316577475175,
+    "W1": 0.32136225709339533,
+    "n_lifetimes": 710,
+    "family": "restricted_axon_R_weak",
+    "kind": "restricted",
+    "rep": 7
+  },
+  {
+    "alpha_hill": 6.461246262774609,
+    "xi": -0.3145244632350365,
+    "W1": 0.3732908467068055,
+    "n_lifetimes": 696,
+    "family": "restricted_axon_R_weak",
+    "kind": "restricted",
+    "rep": 8
+  },
+  {
+    "alpha_hill": 5.808357299380734,
+    "xi": -0.16535624694619627,
+    "W1": 0.3375715784882517,
+    "n_lifetimes": 650,
+    "family": "restricted_axon_R_weak",
+    "kind": "restricted",
+    "rep": 9
+  },
+  {
+    "alpha_hill": 1.067085659956017,
+    "xi": 1.094725411876124,
+    "W1": 0.06331253831727483,
+    "n_lifetimes": 2737,
+    "family": "stable_alpha_1.5",
+    "kind": "stable",
+    "rep": 0
+  },
+  {
+    "alpha_hill": 1.1221909247653155,
+    "xi": 1.0485662029564962,
+    "W1": 0.064728267844808,
+    "n_lifetimes": 2604,
+    "family": "stable_alpha_1.5",
+    "kind": "stable",
+    "rep": 1
+  },
+  {
+    "alpha_hill": 1.2031054895362832,
+    "xi": 0.9546721878849433,
+    "W1": 0.07169151311378871,
+    "n_lifetimes": 2969,
+    "family": "stable_alpha_1.5",
+    "kind": "stable",
+    "rep": 2
+  },
+  {
+    "alpha_hill": 1.1663113306785715,
+    "xi": 0.9575070894624202,
+    "W1": 0.06701905725556817,
+    "n_lifetimes": 2913,
+    "family": "stable_alpha_1.5",
+    "kind": "stable",
+    "rep": 3
+  },
+  {
+    "alpha_hill": 1.115683066100036,
+    "xi": 1.008483235434798,
+    "W1": 0.06929597692167858,
+    "n_lifetimes": 2819,
+    "family": "stable_alpha_1.5",
+    "kind": "stable",
+    "rep": 4
+  },
+  {
+    "alpha_hill": 1.2274731388222886,
+    "xi": 0.8921324407193795,
+    "W1": 0.0709103402991643,
+    "n_lifetimes": 2858,
+    "family": "stable_alpha_1.5",
+    "kind": "stable",
+    "rep": 5
+  },
+  {
+    "alpha_hill": 1.0586704028420375,
+    "xi": 1.072492587259218,
+    "W1": 0.06263781023315806,
+    "n_lifetimes": 2791,
+    "family": "stable_alpha_1.5",
+    "kind": "stable",
+    "rep": 6
+  },
+  {
+    "alpha_hill": 1.1382982801166497,
+    "xi": 1.019864532788172,
+    "W1": 0.06236697223160637,
+    "n_lifetimes": 2870,
+    "family": "stable_alpha_1.5",
+    "kind": "stable",
+    "rep": 7
+  },
+  {
+    "alpha_hill": 1.0258809046208597,
+    "xi": 1.159598349492624,
+    "W1": 0.059157335202115954,
+    "n_lifetimes": 2702,
+    "family": "stable_alpha_1.5",
+    "kind": "stable",
+    "rep": 8
+  },
+  {
+    "alpha_hill": 1.237698326480705,
+    "xi": 0.9574201943059044,
+    "W1": 0.06796919506037812,
+    "n_lifetimes": 3028,
+    "family": "stable_alpha_1.5",
+    "kind": "stable",
+    "rep": 9
+  },
+  {
+    "alpha_hill": 1.3491814807799476,
+    "xi": 0.7832028782653425,
+    "W1": 0.06738220060813224,
+    "n_lifetimes": 3326,
+    "family": "stable_alpha_1.8",
+    "kind": "stable",
+    "rep": 0
+  },
+  {
+    "alpha_hill": 1.4199695834390584,
+    "xi": 0.7079756991175437,
+    "W1": 0.06930428835349552,
+    "n_lifetimes": 3496,
+    "family": "stable_alpha_1.8",
+    "kind": "stable",
+    "rep": 1
+  },
+  {
+    "alpha_hill": 1.3632859040104086,
+    "xi": 0.7470008506336507,
+    "W1": 0.0648610113807782,
+    "n_lifetimes": 3325,
+    "family": "stable_alpha_1.8",
+    "kind": "stable",
+    "rep": 2
+  },
+  {
+    "alpha_hill": 1.3945375409450895,
+    "xi": 0.7813678976344268,
+    "W1": 0.0656443353268405,
+    "n_lifetimes": 3295,
+    "family": "stable_alpha_1.8",
+    "kind": "stable",
+    "rep": 3
+  },
+  {
+    "alpha_hill": 1.4341652282050632,
+    "xi": 0.7239956444714698,
+    "W1": 0.06241823183832414,
+    "n_lifetimes": 3398,
+    "family": "stable_alpha_1.8",
+    "kind": "stable",
+    "rep": 4
+  },
+  {
+    "alpha_hill": 1.2935678892934221,
+    "xi": 0.8317690829371438,
+    "W1": 0.06716371045613728,
+    "n_lifetimes": 3301,
+    "family": "stable_alpha_1.8",
+    "kind": "stable",
+    "rep": 5
+  },
+  {
+    "alpha_hill": 1.3303336931879584,
+    "xi": 0.8019448739357956,
+    "W1": 0.07143566053455641,
+    "n_lifetimes": 3351,
+    "family": "stable_alpha_1.8",
+    "kind": "stable",
+    "rep": 6
+  },
+  {
+    "alpha_hill": 1.2885533813554504,
+    "xi": 0.8330169213084494,
+    "W1": 0.0665806024741004,
+    "n_lifetimes": 3198,
+    "family": "stable_alpha_1.8",
+    "kind": "stable",
+    "rep": 7
+  },
+  {
+    "alpha_hill": 1.4067225841244413,
+    "xi": 0.7183629753915721,
+    "W1": 0.07349816330202236,
+    "n_lifetimes": 3281,
+    "family": "stable_alpha_1.8",
+    "kind": "stable",
+    "rep": 8
+  },
+  {
+    "alpha_hill": 1.3648244534857634,
+    "xi": 0.6874771622408702,
+    "W1": 0.06338076799907605,
+    "n_lifetimes": 3439,
+    "family": "stable_alpha_1.8",
+    "kind": "stable",
+    "rep": 9
+  },
+  {
+    "alpha_hill": 5.3574284327423145,
+    "xi": -0.1379944377784832,
+    "W1": 0.5834249374238358,
+    "n_lifetimes": 578,
+    "family": "mixed_70axon_30free",
+    "kind": "mixed",
+    "rep": 0
+  },
+  {
+    "alpha_hill": 6.285456991006765,
+    "xi": -0.0341799522412818,
+    "W1": 0.5610137889612222,
+    "n_lifetimes": 524,
+    "family": "mixed_70axon_30free",
+    "kind": "mixed",
+    "rep": 1
+  },
+  {
+    "alpha_hill": 6.359171845332095,
+    "xi": -0.019602983291453824,
+    "W1": 0.5178676829208427,
+    "n_lifetimes": 543,
+    "family": "mixed_70axon_30free",
+    "kind": "mixed",
+    "rep": 2
+  },
+  {
+    "alpha_hill": 6.4713837995913615,
+    "xi": -0.10481839384214792,
+    "W1": 0.5894553832405082,
+    "n_lifetimes": 540,
+    "family": "mixed_70axon_30free",
+    "kind": "mixed",
+    "rep": 3
+  },
+  {
+    "alpha_hill": 5.393021759068487,
+    "xi": -0.0687114778710843,
+    "W1": 0.5738581196204571,
+    "n_lifetimes": 544,
+    "family": "mixed_70axon_30free",
+    "kind": "mixed",
+    "rep": 4
+  },
+  {
+    "alpha_hill": 5.529509552059239,
+    "xi": -0.1757026826194976,
+    "W1": 0.5977003956202553,
+    "n_lifetimes": 589,
+    "family": "mixed_70axon_30free",
+    "kind": "mixed",
+    "rep": 5
+  },
+  {
+    "alpha_hill": 5.717412950811675,
+    "xi": -0.20470341331438283,
+    "W1": 0.5788603572209174,
+    "n_lifetimes": 561,
+    "family": "mixed_70axon_30free",
+    "kind": "mixed",
+    "rep": 6
+  },
+  {
+    "alpha_hill": 6.1421780217837805,
+    "xi": -0.33043881762104,
+    "W1": 0.6038886535476959,
+    "n_lifetimes": 584,
+    "family": "mixed_70axon_30free",
+    "kind": "mixed",
+    "rep": 7
+  },
+  {
+    "alpha_hill": 5.82766369473689,
+    "xi": -0.20835946419409174,
+    "W1": 0.6224521017777521,
+    "n_lifetimes": 551,
+    "family": "mixed_70axon_30free",
+    "kind": "mixed",
+    "rep": 8
+  },
+  {
+    "alpha_hill": 6.319709312626715,
+    "xi": -0.2892374419144804,
+    "W1": 0.5782701881422628,
+    "n_lifetimes": 569,
+    "family": "mixed_70axon_30free",
+    "kind": "mixed",
+    "rep": 9
+  }
+]
