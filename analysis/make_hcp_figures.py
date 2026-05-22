@@ -31,7 +31,11 @@ import nibabel as nib  # noqa
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
-HCP = ROOT / "results" / "hcp"
+# Prefer the v2 layout (denoised/JHU/split-half pipeline output). Fall back to
+# the older "hcp" directory if v2 isn't present.
+HCP = ROOT / "results" / "hcp_v2"
+if not HCP.is_dir():
+    HCP = ROOT / "results" / "hcp"
 
 # Match parent-paper figure style
 rcParams.update({

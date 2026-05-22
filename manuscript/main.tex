@@ -399,7 +399,24 @@ construction~\eqref{eq:Z} pooled across all (voxel, shell) pairs, with
 top-fraction $k/N=0.10$ (matching the parent paper's choice).
 Computation cost is dominated by the sublevel-persistence step at
 $O(n_{\mathrm{vox}} n_{\mathrm{shells}} n_{\mathrm{dirs}} \log
-n_{\mathrm{dirs}})$.
+n_{\mathrm{dirs}})$. The end-to-end pipeline from the raw DW-MRI
+volume to a per-ROI $\widehat{\stab}_{\mathrm{persistence}}$ value
+is summarised in Figure~\ref{fig:pipeline}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{../figures/fig6_pipeline.pdf}
+\caption{Schematic of the per-ROI persistence-tail pipeline. The DWI
+4D volume contributes per-(voxel, shell, direction) attenuation
+values $y_{v,k,i} = -\ln(S/S_0)$; these are pooled within each ROI to
+build a discrete-time L\'evy-bridge sample path $Z_k$
+(Equation~\ref{eq:Z}). Sublevel-set persistence of $Z_k$ yields a
+lifetime distribution whose tail exponent is estimated by the
+Hill estimator~\eqref{eq:hill}, producing one
+$\widehat{\stab}_{\mathrm{persistence}}$ value per ROI per subject per
+scan.}
+\label{fig:pipeline}
+\end{figure}
 
 % ===========================================================================
 \section{Results}\label{sec:simulation}
@@ -575,6 +592,38 @@ cluster (SLURM array \fpath{sherlock/run_hcp_retest_roi.sbatch}); after a
 2$\times$ spatial downsampling for tractability, each subject and
 visit takes approximately $5$~min.
 
+\subsection{Voxelwise spatial pattern}
+Although the principal estimator is reported at the ROI level, the
+underlying voxelwise persistence-tail map is informative for
+qualitative inspection of spatial structure. Figure~\ref{fig:maps}
+shows axial midslice maps of FA, MD, MK,
+$\widehat{\stab}_{\mathrm{persistence}}$, and the derived tissue mask
+in a representative subject from the HCP-YA cohort. The
+persistence-tail map exhibits high values along compact white-matter
+tracts (corpus callosum, corona radiata, internal capsule),
+intermediate values throughout cortical grey matter, and the lowest
+values in CSF spaces. The spatial pattern visually resembles that of
+the kurtosis map but with sharper white-matter contrast and
+additional structure in deep grey-matter nuclei, consistent with the
+moderate voxelwise Spearman correlation between
+$\widehat{\stab}_{\mathrm{persistence}}$ and MK
+(Section~\ref{sec:alpha_vs_mk_corr}). The figure is provided for
+visualisation only; per-subject quantitative claims are based on the
+ROI-level estimator (Section~\ref{sec:realdata}).
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\linewidth]{../figures/fig7_hcp_maps.pdf}
+\caption{Axial midslice maps in a representative HCP-YA subject
+(downsampled $2\times$ in-plane for tractability of the voxelwise
+persistence step). From left to right: FA, MD, mean kurtosis MK,
+$\widehat{\stab}_{\mathrm{persistence}}$, and the derived tissue mask
+(WM, GM, CSF, midsagittal corpus callosum). The persistence-tail map
+captures the same broad white-vs-grey contrast as the kurtosis map
+while emphasising compact tract structure.}
+\label{fig:maps}
+\end{figure*}
+
 \subsection{Tissue-class discrimination}
 Across the HCP-YA cohort ($N=30$), the ROI-level
 $\widehat{\stab}_{\mathrm{persistence}}$ orders the four tissue classes
@@ -707,6 +756,35 @@ across-subject standard deviations.
 (b)~Mean MK in the same tracts, plotted in the same order.}
 \label{fig:jhu}
 \end{figure*}
+
+\subsection{Voxelwise relationship to mean kurtosis}
+\label{sec:alpha_vs_mk_corr}
+Figure~\ref{fig:alpha-vs-k} shows the voxelwise relationship between
+$\widehat{\stab}_{\mathrm{persistence}}$ and MK in a representative
+HCP-YA subject, coloured by tissue. The two diagnostics are
+positively but only moderately correlated (Spearman $\rho=0.39$ over
+$n=92{,}696$ in-mask voxels), consistent with the theoretical
+expectation that MK is determined by the fourth moment of the
+displacement distribution whereas the persistence-tail exponent is
+sensitive to its asymptotic decay rate. The tissue clusters are
+separable by either coordinate but with different shape: in WM and
+CC, $\widehat{\stab}_{\mathrm{persistence}}$ extends further at fixed
+MK than a linear calibration would predict, providing direct
+evidence that the persistence-tail biomarker carries non-redundant
+information about microstructural restriction. The voxelwise
+correlation is shown here for visualisation only; reproducible
+per-subject claims are based on the ROI-level estimator.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.7\linewidth]{../figures/fig9_alpha_vs_K.pdf}
+\caption{Voxelwise relationship between
+$\widehat{\stab}_{\mathrm{persistence}}$ and mean kurtosis MK in a
+representative HCP-YA subject, coloured by tissue (WM, GM, CSF,
+midsagittal CC). A uniform random sample of voxels per tissue is
+shown for legibility.}
+\label{fig:alpha-vs-k}
+\end{figure}
 
 % ===========================================================================
 \section{Discussion}\label{sec:discussion}
